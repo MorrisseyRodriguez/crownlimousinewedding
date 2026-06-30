@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import emailjs from '@emailjs/browser'
 import './QuoteForm.css'
 
 const vehicleTypes = [
@@ -72,7 +71,7 @@ export default function QuoteForm() {
         notes: form.notes || 'None',
       }
 
-      await emailjs.send(
+      await window.emailjs.send(
         'service_3ft34fv',
         'template_xpozite',
         templateParams,
