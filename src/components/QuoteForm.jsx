@@ -23,11 +23,11 @@ const serviceTypes = [
 
 const defaultForm = {
   name: '',
-  weddingDate: '',
+  date: '',
   phone: '',
   email: '',
   serviceType: '',
-  pickupLocation: '',
+  pickup: '',
   destination: '',
   vehicleType: '',
   passengers: '',
@@ -54,7 +54,7 @@ export default function QuoteForm() {
       await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encode({ 'form-name': 'wedding-quote-request', ...form }),
+        body: encode({ 'form-name': 'wedding-quote-request', campaignType: 'Wedding Transportation', ...form }),
       })
       setSubmitted(true)
       setForm(defaultForm)
@@ -139,6 +139,7 @@ export default function QuoteForm() {
             aria-label="Wedding transportation reservation request"
           >
             <input type="hidden" name="form-name" value="wedding-quote-request" />
+            <input type="hidden" name="campaignType" value="Wedding Transportation" />
             <div className="form-grid form-grid-2">
               <div className="form-field">
                 <label htmlFor="name" className="form-label">Full Name <span aria-hidden="true">*</span></label>
@@ -155,13 +156,13 @@ export default function QuoteForm() {
                 />
               </div>
               <div className="form-field">
-                <label htmlFor="weddingDate" className="form-label">Wedding Date</label>
+                <label htmlFor="date" className="form-label">Wedding Date</label>
                 <input
-                  id="weddingDate"
-                  name="weddingDate"
+                  id="date"
+                  name="date"
                   type="date"
                   className="form-input"
-                  value={form.weddingDate}
+                  value={form.date}
                   onChange={handleChange}
                 />
               </div>
@@ -215,13 +216,13 @@ export default function QuoteForm() {
             </div>
 
             <div className="form-field">
-              <label htmlFor="pickupLocation" className="form-label">Pickup Location <span aria-hidden="true">*</span></label>
+              <label htmlFor="pickup" className="form-label">Pickup Location <span aria-hidden="true">*</span></label>
               <input
-                id="pickupLocation"
-                name="pickupLocation"
+                id="pickup"
+                name="pickup"
                 type="text"
                 className="form-input"
-                value={form.pickupLocation}
+                value={form.pickup}
                 onChange={handleChange}
                 placeholder="Address or venue name"
                 required
