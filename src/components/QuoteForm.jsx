@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import emailjs from '@emailjs/browser'
 import './QuoteForm.css'
 
 const vehicleTypes = [
@@ -56,11 +57,33 @@ export default function QuoteForm() {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: encode({ 'form-name': 'wedding-quote-request', campaignType: 'Wedding Transportation', ...form }),
       })
+
+      const templateParams = {
+        campaignType: 'Wedding Transportation',
+        name: form.name || 'Not provided',
+        phone: form.phone || 'Not provided',
+        email: form.email || 'Not provided',
+        date: form.date || 'Not provided',
+        serviceType: form.serviceType || 'Not provided',
+        vehicleType: form.vehicleType || 'Not provided',
+        passengers: form.passengers || 'Not provided',
+        pickup: form.pickup || 'Not provided',
+        destination: form.destination || 'Not provided',
+        notes: form.notes || 'None',
+      }
+
+      await emailjs.send(
+        'service_3ft34fv',
+        'template_xpozite',
+        templateParams,
+        'OZo1S52ylqKZv5AWM'
+      )
+
       setSubmitted(true)
       setForm(defaultForm)
     } catch (error) {
       console.error(error)
-      alert('Submission failed')
+      alert('Submission failed. Please try again or call us directly.')
     } finally {
       setLoading(false)
     }
