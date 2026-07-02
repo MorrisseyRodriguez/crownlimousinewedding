@@ -44,7 +44,7 @@ export default function MobileCTA({ menuOpen, setMenuOpen }) {
       </button>
 
       <a
-        href="tel:+13105550000"
+        href="tel:+13109478898"
         className="dock-btn dock-btn--call"
         aria-label="Call us"
       >
